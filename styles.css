@@ -1,0 +1,277 @@
+:root {
+    --light-blue: #b7f4ef;
+    --mid-blue: #5ed2e5;
+    --blue: #107bbc;
+    --navy: #0a3651;
+    --white: #fefefd;
+    --light-red: #f4b7b7;
+    --mid-red: #e55e5e;
+    --red: #bc1010;
+  }
+  
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--navy);
+  }
+  /* .main {
+    display: flex;
+  } */
+  .control-panel {
+    background-color: var(--light-blue);
+    width: 300px;
+    height: 250px;
+    /*   display: flex; */
+    padding: 15px;
+    margin: 20px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 25px var(--white);
+  }
+
+  .stack-controls {
+    display: flex;
+    justify-content: space-around;
+  }  
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+  }
+  .stack1-controls div,
+  .stack2-controls div {
+    text-align: center;
+  }
+
+  .span-count {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .input-box {
+    display: none;
+    font-size: 20px;
+    width: 30px;
+  }
+
+  .clear-btn,
+  .compare-btn {
+    background-color: var(--blue);
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: 5px 5px 5px var(--navy);
+    /*   width: 50%; */
+    text-align: center;
+    cursor: pointer;
+  }
+  .clear-btn {
+    margin: 10px 0;
+  }
+  .play {
+    margin: 10px 0 0 0;
+    background-color: var(--blue);
+    border-radius: 50px;
+    padding: 5px 10px;
+    color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: 5px 5px 5px var(--navy);
+    /*   width: 25%; */
+    text-align: center;
+    cursor: pointer;
+  }
+  /* Cube styles */
+ @keyframes bounce {
+    0% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(0);
+    }
+    30% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(-50px) translateX(-50px);
+    }
+    50% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(0) translateX(0);
+    }
+    60% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(-20px) translateX(-20px);
+    }
+    70% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(0) translateX(0);
+    }
+    80% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(-10px) translateX(-10px);
+    }
+    100% {
+        transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(0) translateX(0);
+    }
+  }
+
+  .cube {
+    animation: bounce 0.8s ease-in-out;
+    animation-fill-mode: forwards;
+    width: 50px;
+    height: 50px;
+    transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);
+    margin: 10px;
+    background: var(--mid-blue);
+    position: relative;
+  }
+  .cube.dragging {
+    background: var(--mid-red);
+  }
+  .cube::before {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 35.5px;
+    height: 51px;
+    background: var(--light-blue);
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(-45deg) translateX(-12px)
+      translateY(48px) skewY(45deg);
+  }
+  .cube.dragging::before {
+    background: var(--light-red);
+  }
+  .cube::after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 36px;
+    height: 50px;
+    background: var(--blue);
+    transform: rotateX(0) rotateY(0deg) rotateZ(0deg) translateX(50px)
+      translateY(18px) skewY(45deg);
+  }
+  .cube.dragging::after {
+    background: var(--red);
+  }
+  
+  .cube.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+  }
+  /* widget container */
+
+  .stacks-box {
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px auto;
+  }
+  
+  /* Stack container for cubes */
+  .stack-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    min-height: 100px;
+    margin: 0 0 35px 0;
+  }
+
+  /* for lines */
+  .point-box-top, .point-box-bot {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--white);
+    border-radius: 50px;
+    cursor: pointer;
+    margin: auto;
+    user-select: none;
+}
+svg.line-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.line {
+    stroke: white;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+  .add-message {
+    font-size: 20px;
+    color: var(--white);
+    text-shadow: 0px 2px 10px var(--mid-blue);
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  /* Count container for the stack count */
+  .count-container {
+    margin: 50px auto;
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .stack1-count,
+  .stack2-count {
+    padding: 0 10px;
+    font-size: 50px;
+    color: var(--white);
+    text-shadow: 0px 2px 10px var(--mid-blue);
+    pointer-events: none;
+  }
+  
+  .delete-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--red);
+    font-size: 50px;
+    color: var(--white);
+    text-shadow: 0px 2px 10px var(--light-red);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .delete-box.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  @keyframes spinAndGrow {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) scale(0.1);
+    }
+    25% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(3);
+    }
+    75% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(3);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) scale(3);
+    }
+  }
+.comparison-symbol {
+    font-size: 100px;
+    color: white;
+    text-shadow: 0px 2px 10px var(--mid-blue);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+    animation: spinAndGrow 3s ease forwards;
+  }
