@@ -11,4 +11,4 @@ This Comparator Widget is designed to help kids learn their comparator symbols.
 6. Clear lines by adding or removing blocks or using the **Clear Line Button**.
 
 ## View Here:
-[Comparator Widget](http://www.visit.com)
+[Comparator Widget](https://lisacjheinhold.github.io/comparator-widget/)
